@@ -6,10 +6,10 @@ var fib = function(n) {
     return n;
   }
   return fib(n - 1) + fib(n - 2);
-  var fibIter = function(a, b, count, sum) {
-    return count < 2 ? sum : fibIter(b, a + b, count - 1, sum + b);
+  var fibIter = function(a, b, count) {
+    return count < 2 ? b : fibIter(b, a + b, count - 1);
   };
-  return fibIter(0, 1, n, 0);
+  return fibIter(0, 1, n);
 };
 
 module.exports = fib;
