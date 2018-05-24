@@ -8,16 +8,17 @@ var sqrt = function(x) {
   if (typeof x !== "number" || x < 0) {
     throw new Error("input should be number and greater than 0");
   }
-  var goodEnough = function(guess) {
-    return abs(guess * guess - x) < 0.001;
+  var goodEnough = function(oldGuess, newGuess) {
+    return abs(newGuess - oldGuess) / oldGuess < 0.001;
   };
   var improve = function(guess) {
     return average(x / guess, guess);
   };
-  var sqrtIter = function(guess, x) {
-    return goodEnough(guess) ? guess : sqrtIter(improve(guess), x);
+  var sqrtIter = function(oldGuess, newGuess, x) {
+    // console.log(oldGuess);
+    return goodEnough(oldGuess, newGuess) ? oldGuess : sqrtIter(newGuess, improve(newGuess), x);
   };
-  return x > 0 ? sqrtIter(1, x) : 0;
+  return x > 0 ? sqrtIter(1, improve(1), x) : 0;
 };
 
 module.exports = sqrt;
