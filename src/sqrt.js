@@ -3,7 +3,7 @@ var abs = function(num) {
 };
 var average = function(x, y) {
   return (x + y) / 2;
-}
+};
 var sqrt = function(x) {
   if (typeof x !== "number" || x < 0) {
     throw new Error("input should be number and greater than 0");
@@ -16,19 +16,16 @@ var sqrt = function(x) {
   };
   var sqrtIter = function(oldGuess, newGuess, x) {
     // console.log(oldGuess);
-    return goodEnough(oldGuess, newGuess) ? oldGuess : sqrtIter(newGuess, improve(newGuess), x);
+    return goodEnough(oldGuess, newGuess)
+      ? oldGuess
+      : sqrtIter(newGuess, improve(newGuess), x);
   };
-  if (x > 0) {
-    var almost = sqrtIter(1, improve(1), x);
+  var final = function(almost) {
     var integer = Math.round(almost);
-    var final;
-    if (integer * integer === x) {
-      final = integer;
-    } else {
-      final = almost;
-    }
-  }
-  return x > 0 ? final : 0;
+    return integer * integer === x ? integer : almost;
+  };
+
+  return x > 0 ? final(sqrtIter(1, improve(1), x)) : 0;
 };
 
 module.exports = sqrt;
