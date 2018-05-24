@@ -18,7 +18,17 @@ var sqrt = function(x) {
     // console.log(oldGuess);
     return goodEnough(oldGuess, newGuess) ? oldGuess : sqrtIter(newGuess, improve(newGuess), x);
   };
-  return x > 0 ? sqrtIter(1, improve(1), x) : 0;
+  if (x > 0) {
+    var almost = sqrtIter(1, improve(1), x);
+    var integer = Math.round(almost);
+    var final;
+    if (integer * integer === x) {
+      final = integer;
+    } else {
+      final = almost;
+    }
+  }
+  return x > 0 ? final : 0;
 };
 
 module.exports = sqrt;
