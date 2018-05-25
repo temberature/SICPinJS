@@ -1,14 +1,9 @@
-var fixedPoint = function(f, a, b, dx) {
-  return sum(
-    function(a) {
-      return f(a) * dx;
-    },
-    a + dx / 2,
-    function(a) {
-      return a + dx;
-    },
-    b
-  );
+var fixedPoint = function(f, guess) {
+  var newGuess = f(guess);
+  if (Math.abs(newGuess - guess) < 0.001 ) {
+    return guess;
+  }
+  return fixedPoint(f, newGuess);
 };
 
 module.exports = fixedPoint;

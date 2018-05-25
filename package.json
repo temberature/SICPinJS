@@ -4,7 +4,7 @@
   "description": "SICP Code Writed In Javascript.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --watch -g 'sear'"
+    "test": "mocha --watch -g 'fixed'"
   },
   "author": "",
   "license": "ISC",
