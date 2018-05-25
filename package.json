@@ -4,7 +4,7 @@
   "description": "SICP Code Writed In Javascript.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --watch -g 'countChange'"
+    "test": "mocha --watch -g 'sum'"
   },
   "author": "",
   "license": "ISC",
