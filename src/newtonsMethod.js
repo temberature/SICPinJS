@@ -8,13 +8,16 @@ var deriv = function(g) {
   };
 };
 
-var newtonsMethod = function(g) {
-  var f = function(g) {
-    return function(x) {
-      return x - g(x) / deriv(g)(x);
-    };
+var newtonTransform = function(g) {
+  return function(x) {
+    return x - g(x) / deriv(g)(x);
   };
-  return fixedPoint(f(g), 1);
+};
+var fixedPointOfTransforms = function(g, transform) {
+  return fixedPoint(transform(g), 1);
+}
+var newtonsMethod = function(g) {
+  return fixedPoint(newtonTransform(g), 1);
 };
 
 module.exports = {
