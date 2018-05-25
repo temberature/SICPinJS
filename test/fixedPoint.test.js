@@ -11,7 +11,7 @@ describe("fixedPoint", function() {
     console.log(r);
     expect(r).to.closeTo(0.74, 0.01);
   })
-  it('fixedPoint(division, 2) closeTo Math.sqrt(2)', function() {
+  it('fixedPoint can calc Math.sqrt(2)', function() {
     var sqrt = function(x) {
       var averageDamp = function(f) {
         return function(y) {
@@ -26,5 +26,21 @@ describe("fixedPoint", function() {
     var r = sqrt(2);
     console.log(r);
     expect(r).to.closeTo(Math.sqrt(2), 0.01);
+  })
+  it('fixedPoint can calc cubeRoot(8)', function() {
+    var cubeRoot = function(x) {
+      var averageDamp = function(f) {
+        return function(y) {
+          return average(y, f(y));
+        }
+      }
+      var f = function(y) {
+        return x / (y * y);
+      }
+      return fixedPoint(averageDamp(f), 1.0);
+    }
+    var r = cubeRoot(8);
+    console.log(r);
+    expect(r).to.closeTo(2, 1);
   })
 })
