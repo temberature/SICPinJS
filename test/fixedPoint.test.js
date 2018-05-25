@@ -1,5 +1,7 @@
 var expect = require("chai").expect;
-var cube = require("../src/cube");
+var cube = require("../src/base").cube;
+var average = require("../src/base").average;
+var square = require("../src/base").square;
 var fixedPoint = require("../src/fixedPoint");
 
 
@@ -11,10 +13,15 @@ describe("fixedPoint", function() {
   })
   it('fixedPoint(division, 2) closeTo Math.sqrt(2)', function() {
     var sqrt = function(x) {
-      var target = function(y) {
-        return (y + x / y) / 2;
+      var averageDamp = function(f) {
+        return function(y) {
+          return average(y, f(y));
+        }
       }
-      return fixedPoint(target, 1.0);
+      var f = function(y) {
+        return x / y;
+      }
+      return fixedPoint(averageDamp(f), 1.0);
     }
     var r = sqrt(2);
     console.log(r);
