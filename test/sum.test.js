@@ -1,11 +1,9 @@
-var sum = require("../src/sum");
-var expect = require("chai").expect;
 
+var expect = require("chai").expect;
+var cube = require("../src/cube");
+var sum = require("../src/sum");
 var integer = function(a) {
   return a;
-};
-var cube = function(a) {
-  return a * a * a;
 };
 var inc = function(a) {
   return a + 1;
