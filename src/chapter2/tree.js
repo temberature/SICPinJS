@@ -1,6 +1,7 @@
 var cons = require("./cons").cons;
 var car = require("./cons").car;
 var cdr = require("./cons").cdr;
+var square = require('../base').square;
 
 var scaleTree = function(tree, factor) {
   if (cdr(tree) === false) {
@@ -14,6 +15,10 @@ var equalTree = function(a, b) {
     return true;
   }
   return equalTree(car(a), car(b)) && equalTree(cdr(a), cdr(b));
+}
+
+var sumOddSquares = function(tree) {
+  return square()
 }
 module.exports = {
   scaleTree: scaleTree,
