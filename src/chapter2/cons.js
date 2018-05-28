@@ -11,6 +11,7 @@ var cons = function(a, b) {
   return dispatch;
 };
 var car = function(d) {
+  // 最好能判断闭包函数名
   return (typeof d === 'function' && d.name === 'dispatch') && d(0);
 };
 var cdr = function(d) {

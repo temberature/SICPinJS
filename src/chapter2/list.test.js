@@ -6,6 +6,11 @@ var list = require("./list").list;
 var equalList = require("./list").equalList;
 var listRef = require("./list").listRef;
 var length = require("./list").length;
+var append = require("./list").append;
+var debug = require("./list").debug;
+
+var squares = list(1, 4, 9, 16, 25);
+var odds = list(1, 3, 5, 7);
 
 describe("list", function() {
   var oneThroughFour = list(1, 2, 3, 4);
@@ -35,16 +40,29 @@ describe("list", function() {
   });
 });
 describe("listRef", function() {
-  var squares = list(1, 4, 9, 16, 25);
+
   it("listRef(squares, 3) === 16", function() {
     var r = listRef(squares, 3);
     expect(r).to.equal(16);
   });
 });
 describe("listLength", function() {
-  var odds = list(1, 3, 5, 7);
+
   it("length(odds) === 4", function() {
     var r = length(odds);
     expect(r).to.equal(4);
+  });
+});
+describe("listdebug", function() {
+  it("append(squares, odds) === list(1, 4, 9, 16, 25, 1, 3, 5, 7)", function() {
+    // console.log(debug(odds));
+  });
+});
+describe("listappend", function() {
+  it("append(squares, odds) === list(1, 4, 9, 16, 25, 1, 3, 5, 7)", function() {
+    var a = append(squares, odds), b = list(1, 4, 9, 16, 25, 1, 3, 5, 7);
+    console.log(debug(a));
+    var r = equalList(a, b);
+    expect(r).to.equal(true);
   });
 });
