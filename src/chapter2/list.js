@@ -43,11 +43,19 @@ var debug = function(items) {
   }
   return car(items) + " " + debug(cdr(items));
 };
+
+var scaleList = function(items, factor) {
+  if (cdr(items) === false) {
+    return items * factor;
+  }
+  return cons(car(items) * factor, scaleList(cdr(items), factor));
+}
 module.exports = {
   list: list,
   equalList: equalList,
   listRef: listRef,
   length: length,
   append: append,
-  debug: debug
+  debug: debug,
+  scaleList: scaleList
 };
