@@ -1,12 +1,11 @@
-var gcd = require('../gcd');
+var gcd = require("../gcd");
 
 var cons = function(a, b) {
-  var divisor = gcd(a, b);
   return function(m) {
     if (m === 0) {
-      return a / divisor;
+      return a;
     } else if (m === 1) {
-      return b / divisor;
+      return b;
     }
   };
 };
@@ -21,4 +20,4 @@ module.exports = {
   cons: cons,
   car: car,
   cdr: cdr
-}
+};
