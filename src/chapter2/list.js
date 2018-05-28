@@ -57,6 +57,13 @@ var map = function(proc, items) {
   }
   return cons(proc(car(items)), map(proc, cdr(items)))
 }
+
+var countLeaves = function(x) {
+  if (cdr(x) === false) {
+    return 1;
+  }
+  return countLeaves(car(x)) + countLeaves(cdr(x));
+}
 module.exports = {
   list: list,
   equalList: equalList,
@@ -65,5 +72,6 @@ module.exports = {
   append: append,
   debug: debug,
   scaleList: scaleList,
-  map: map
+  map: map,
+  countLeaves: countLeaves
 };

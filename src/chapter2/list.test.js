@@ -10,6 +10,7 @@ var append = require("./list").append;
 var debug = require("./list").debug;
 var scaleList = require("./list").scaleList;
 var map = require("./list").map;
+var countLeaves = require("./list").countLeaves;
 
 var squares = list(1, 4, 9, 16, 25);
 var odds = list(1, 3, 5, 7);
@@ -76,12 +77,10 @@ describe("scaleList", function() {
     expect(r).to.equal(true);
   });
 });
-describe("mapList", function() {
-  it("map(abs, list(-10, 2.5, -11.6, 17)) === list(10, 2.5, 11.6, 17)", function() {
-    var a = map(Math.abs, list(-10, 2.5, -11.6, 17)),
-      b = list(10, 2.5, 11.6, 17);
-    console.log(debug(a));
-    var r = equalList(a, b);
-    expect(r).to.equal(true);
+describe("countLeaves", function() {
+  it("countLeaves(cons(list(1, 2), list(3, 4))) === 4", function() {
+    var x = cons(list(1, 2), list(3, 4));
+    console.log(debug(x));
+    expect(countLeaves(x)).to.equal(4);
   });
 });
