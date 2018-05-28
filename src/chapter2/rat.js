@@ -19,13 +19,14 @@ var denom = function(d) {
 var addRat = function(a, b) {
   return makeRat(numer(a) * denom(b) + numer(b) * denom(a), denom(a) * denom(b));
 };
-var equal = function(a, b) {
+var equalRat = function(a, b) {
   return numer(a) === numer(b) && denom(a) === denom(b);
 }
 module.exports = {
   makeRat: makeRat,
   addRat: addRat,
+  equalRat: equalRat,
   numer: numer,
   denom: denom,
-  equal: equal
+
 };
