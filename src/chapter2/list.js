@@ -50,6 +50,13 @@ var scaleList = function(items, factor) {
   }
   return cons(car(items) * factor, scaleList(cdr(items), factor));
 }
+
+var map = function(proc, items) {
+  if (cdr(items) === false) {
+    return proc(items);
+  }
+  return cons(proc(car(items)), map(proc, cdr(items)))
+}
 module.exports = {
   list: list,
   equalList: equalList,
@@ -57,5 +64,6 @@ module.exports = {
   length: length,
   append: append,
   debug: debug,
-  scaleList: scaleList
+  scaleList: scaleList,
+  map: map
 };
