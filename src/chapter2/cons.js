@@ -1,19 +1,20 @@
 var gcd = require("../gcd");
 
 var cons = function(a, b) {
-  return function(m) {
+  var dispatch = function(m) {
     if (m === 0) {
       return a;
     } else if (m === 1) {
       return b;
     }
   };
+  return dispatch;
 };
 var car = function(d) {
-  return d(0);
+  return (typeof d === 'function' && d.name === 'dispatch') && d(0);
 };
 var cdr = function(d) {
-  return d(1);
+  return (typeof d === 'function' && d.name === 'dispatch') && d(1);
 };
 
 module.exports = {
