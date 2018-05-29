@@ -3,6 +3,8 @@ var car = require("./cons").car;
 var cdr = require("./cons").cdr;
 var square = require('../base').square;
 var fib = require('../fib');
+var add = require('../base').add;
+var append = require("./list").append;
 
 var scaleTree = function(tree, factor) {
   if (isNull(tree)) {
@@ -55,6 +57,21 @@ var accumulate = function(op, initial, sequence) {
   }
   return op(accumulate(op, initial, element), accumulate(op, initial, reside))
 }
+
+var enumerateInterval  = function(low, high) {
+  if (low >= high) {
+    return cons(high, null);
+  }
+  return cons(low, enumerateInterval(add(low, 1), high));
+}
+
+var enumerateTree = function(tree) {
+  var left = car(tree), right = cdr(tree);
+  if (isNull(right)) {
+    return isNull(left) ? cons(tree, null) : enumerateTree(left);
+  }
+  return append(enumerateTree(left), enumerateTree(right));
+}
 module.exports = {
   scaleTree: scaleTree,
   equalTree: equalTree,
@@ -62,5 +79,7 @@ module.exports = {
   evenFibs: evenFibs,
   filter: filter,
   isOdd: isOdd,
-  accumulate: accumulate
+  accumulate: accumulate,
+  enumerateInterval: enumerateInterval,
+  enumerateTree: enumerateTree
 };

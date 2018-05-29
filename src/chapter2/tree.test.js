@@ -18,6 +18,8 @@ var evenFibs = require("./tree").evenFibs;
 var filter = require("./tree").filter;
 var isOdd = require("./tree").isOdd;
 var accumulate = require("./tree").accumulate;
+var enumerateInterval = require("./tree").enumerateInterval;
+var enumerateTree = require("./tree").enumerateTree;
 var fib = require('../fib');
 var add = require('../base').add;
 var multiply = require('../base').multiply;
@@ -76,6 +78,20 @@ describe('sumOddSquares', function() {
   it('accumulate(cons, null, list(1, 2, 3, 4, 5)) === list(1, 2, 3, 4, 5)', function() {
     var a = accumulate(cons, null, list(1, 2, 3, 4, 5)),
     b = list(1, 2, 3, 4, 5);
+    console.log(debug(a), debug(b));
+    var r = equalList(a, b);
+    expect(r).to.equal(true);
+  })
+  it('enumerateInterval(2, 7) === list(2, 3, 4, 5, 6, 7)', function() {
+    var a = enumerateInterval(2, 7),
+    b = list(2, 3, 4, 5, 6, 7);
+    console.log(debug(a), debug(b));
+    var r = equalList(a, b);
+    expect(r).to.equal(true);
+  })
+  it('enumerateTree(list(1, list(2, list(3, 4)), 5)) === list(1, 2, 3, 4, 5)', function() {
+    var a = enumerateTree(list(2, list(3, 4))),
+    b = list(2, 3, 4);
     console.log(debug(a), debug(b));
     var r = equalList(a, b);
     expect(r).to.equal(true);
