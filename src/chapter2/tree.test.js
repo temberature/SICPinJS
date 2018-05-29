@@ -17,7 +17,9 @@ var sumOddSquares = require("./tree").sumOddSquares;
 var evenFibs = require("./tree").evenFibs;
 var filter = require("./tree").filter;
 var isOdd = require("./tree").isOdd;
+var accumulate = require("./tree").accumulate;
 var fib = require('../fib');
+var add = require('../base').add;
 
 describe("countLeaves", function() {
   it("countLeaves(cons(list(1, 2), list(3, 4))) === 4", function() {
@@ -50,8 +52,16 @@ describe('sumOddSquares', function() {
   it('filter(isOdd, list(1, 2, 3, 4)) === list(1, 3, 5)', function() {
     var a = filter(isOdd, list(1, 2, 3, 4, 5)),
     b = list(1, 3, 5);
-    // console.log(debug(a), debug(b));
+    console.log(debug(a), debug(b));
     var r = equalList(a, b);
     expect(r).to.equal(true);
+  })
+  it('add(1, 2, 3, 4, 5) === 15', function() {
+    var r = add(1, 2, 3, 4, 5);
+    expect(r).to.equal(15);
+  })
+  it('accumulate(add, 0, list(1, 2, 3, 4, 5)) === 15', function() {
+    var r = accumulate(add, 0, list(1, 2, 3, 4, 5));
+    expect(r).to.equal(15);
   })
 })

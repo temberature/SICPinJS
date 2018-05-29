@@ -47,11 +47,20 @@ var isOdd = function(n) {
 var isNull = function(sequence) {
   return sequence === null;
 }
+
+var accumulate = function(op, initial, sequence) {
+  var element = car(sequence), reside = cdr(sequence);
+  if (isNull(reside)) {
+    return isNull(element) ? op(initial, sequence) : op(initial, element);
+  }
+  return accumulate(op, accumulate(op, initial, element), reside);
+}
 module.exports = {
   scaleTree: scaleTree,
   equalTree: equalTree,
   sumOddSquares: sumOddSquares,
   evenFibs: evenFibs,
   filter: filter,
-  isOdd: isOdd
+  isOdd: isOdd,
+  accumulate: accumulate
 };

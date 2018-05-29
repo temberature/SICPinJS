@@ -8,8 +8,16 @@ var average = function(a, b) {
   return (a + b) / 2;
 };
 
+var add = function() {
+  var a = arguments;
+  if (a[0] === undefined) {
+    return null;
+  }
+  return a[0] + add.apply(undefined, [].slice.call(a, 1));
+};
 module.exports = {
   cube: cube,
   square: square,
-  average: average
+  average: average,
+  add: add
 }
