@@ -20,6 +20,7 @@ var isOdd = require("./tree").isOdd;
 var accumulate = require("./tree").accumulate;
 var fib = require('../fib');
 var add = require('../base').add;
+var multiply = require('../base').multiply;
 
 describe("countLeaves", function() {
   it("countLeaves(cons(list(1, 2), list(3, 4))) === 4", function() {
@@ -63,5 +64,20 @@ describe('sumOddSquares', function() {
   it('accumulate(add, 0, list(1, 2, 3, 4, 5)) === 15', function() {
     var r = accumulate(add, 0, list(1, 2, 3, 4, 5));
     expect(r).to.equal(15);
+  })
+  it('multiply(1, 2, 3, 4, 5) === 120', function() {
+    var r = multiply(1, 2, 3, 4, 5);
+    expect(r).to.equal(120);
+  })
+  it('accumulate(multiply, 1, list(1, 2, 3, 4, 5)) === 120', function() {
+    var r = accumulate(multiply, 1, list(1, 2, 3, 4, 5));
+    expect(r).to.equal(120);
+  })
+  it('accumulate(cons, null, list(1, 2, 3, 4, 5)) === list(1, 2, 3, 4, 5)', function() {
+    var a = accumulate(cons, null, list(1, 2, 3, 4, 5)),
+    b = list(1, 2, 3, 4, 5);
+    console.log(debug(a), debug(b));
+    var r = equalList(a, b);
+    expect(r).to.equal(true);
   })
 })

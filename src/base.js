@@ -11,13 +11,22 @@ var average = function(a, b) {
 var add = function() {
   var a = arguments;
   if (a[0] === undefined) {
-    return null;
+    return 0;
   }
   return a[0] + add.apply(undefined, [].slice.call(a, 1));
+};
+
+var multiply = function() {
+  var a = arguments;
+  if (a[0] === undefined) {
+    return 1;
+  }
+  return a[0] * multiply.apply(undefined, [].slice.call(a, 1));
 };
 module.exports = {
   cube: cube,
   square: square,
   average: average,
-  add: add
+  add: add,
+  multiply: multiply
 }

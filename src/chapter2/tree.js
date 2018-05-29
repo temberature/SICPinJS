@@ -51,9 +51,9 @@ var isNull = function(sequence) {
 var accumulate = function(op, initial, sequence) {
   var element = car(sequence), reside = cdr(sequence);
   if (isNull(reside)) {
-    return isNull(element) ? op(initial, sequence) : op(initial, element);
+    return isNull(element) ? sequence : op(element, initial);
   }
-  return accumulate(op, accumulate(op, initial, element), reside);
+  return op(accumulate(op, initial, element), accumulate(op, initial, reside))
 }
 module.exports = {
   scaleTree: scaleTree,
