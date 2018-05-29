@@ -10,6 +10,8 @@ var isNull = require("../base").isNull;
 var append = require("./list").append;
 var map = require("./list").map;
 var multiply = require("../base").multiply;
+var isPrime = require("../chapter1/isPrime");
+var listRef = require("./list").listRef;
 
 var sumOddSquares = function(tree) {
   return accumulate(add, 0, map(square, filter(isOdd, enumerateTree(tree))));
@@ -66,6 +68,18 @@ var listFibSquares = function(n) {
 var productOfSquaresOfOddElements = function(sequence) {
   return accumulate(multiply, 1, map(square, filter(isOdd, sequence)));
 };
+var primeSumPairs = function(n) {
+  return filter(
+    function(element) {
+      return isPrime(listRef(element, 0) + listRef(element, 1));
+    },
+    map(function(i) {
+      return map(function(j) {
+        return list(i, j);
+      }, enumerateInterval(1, i));
+    }, enumerateInterval(1, n))
+  );
+};
 module.exports = {
   sumOddSquares: sumOddSquares,
   evenFibs: evenFibs,
@@ -75,5 +89,6 @@ module.exports = {
   enumerateInterval: enumerateInterval,
   enumerateTree: enumerateTree,
   listFibSquares: listFibSquares,
-  productOfSquaresOfOddElements: productOfSquaresOfOddElements
+  productOfSquaresOfOddElements: productOfSquaresOfOddElements,
+  primeSumPairs: primeSumPairs
 };

@@ -25,6 +25,7 @@ var add = require('../base').add;
 var multiply = require('../base').multiply;
 var listFibSquares = require('./sequence').listFibSquares;
 var productOfSquaresOfOddElements = require('./sequence').productOfSquaresOfOddElements;
+var primeSumPairs = require('./sequence').primeSumPairs;
 
 describe("sequence", function() {
   it("listFibSquares(10) === list(0, 1, 1, 4, 9, 25, 64, 169, 441, 1156, 3025)", function() {
@@ -33,6 +34,10 @@ describe("sequence", function() {
     expect(debug(a)).to.equal(debug(b));
   });
   it("productOfSquaresOfOddElements(list(1, 2, 3, 4, 5)) === 225", function() {
+    var r = productOfSquaresOfOddElements(list(1, 2, 3, 4, 5));
+    expect(r).to.equal(225);
+  });
+  it("primeSumPairs(6) === 225", function() {
     var r = productOfSquaresOfOddElements(list(1, 2, 3, 4, 5));
     expect(r).to.equal(225);
   });
