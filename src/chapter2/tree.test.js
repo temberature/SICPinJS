@@ -14,6 +14,8 @@ var countLeaves = require("./list").countLeaves;
 var scaleTree = require("./tree").scaleTree;
 var equalTree = require("./tree").equalTree;
 var sumOddSquares = require("./tree").sumOddSquares;
+var evenFibs = require("./tree").evenFibs;
+var fib = require('../fib');
 
 describe("countLeaves", function() {
   it("countLeaves(cons(list(1, 2), list(3, 4))) === 4", function() {
@@ -33,10 +35,14 @@ describe('scaleTree', function() {
 })
 describe('sumOddSquares', function() {
   it('sumOddSquares(list(1, list(2, list(3, 4), 5), list(6, 7)), 10) === 84', function() {
-    var a = scaleTree(list(1, list(2, list(3, 4), 5), list(6, 7)), 10),
-    b = list(10, list(20, list(30, 40), 50), list(60, 70));
-    console.log(debug(a), debug(b));
     var r = sumOddSquares(list(1, list(2, list(3, 4), 5), list(6, 7)), 10);
     expect(r).to.equal(84);
+  })
+  it('sumOddSquares(list(1, list(2, list(3, 4), 5), list(6, 7)), 10) === 84', function() {
+    var a = evenFibs(3),
+    b = list(fib(3), fib(0));
+    console.log(debug(a), debug(b));
+    var r = equalList(a, b);
+    expect(r).to.equal(true);
   })
 })

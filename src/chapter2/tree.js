@@ -2,6 +2,7 @@ var cons = require("./cons").cons;
 var car = require("./cons").car;
 var cdr = require("./cons").cdr;
 var square = require('../base').square;
+var fib = require('../fib');
 
 var scaleTree = function(tree, factor) {
   if (cdr(tree) === false) {
@@ -28,8 +29,17 @@ var sumOddSquares = function(tree) {
   }
   return sumOddSquares(car(tree)) + sumOddSquares(cdr(tree));
 }
+
+var evenFibs = function(n) {
+  var fiber = fib(n);
+  if (n < 1) {
+    return fiber;
+  }
+  return fiber % 2 === 0 ? cons(fiber, evenFibs(n - 1)) : evenFibs(n - 1);
+}
 module.exports = {
   scaleTree: scaleTree,
   equalTree: equalTree,
-  sumOddSquares: sumOddSquares
+  sumOddSquares: sumOddSquares,
+  evenFibs: evenFibs
 };
