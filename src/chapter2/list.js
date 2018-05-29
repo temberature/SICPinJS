@@ -54,8 +54,8 @@ var scaleList = function(items, factor) {
 }
 
 var map = function(proc, items) {
-  if (cdr(items) === false) {
-    return proc(items);
+  if (isNull(items)) {
+    return null;
   }
   return cons(proc(car(items)), map(proc, cdr(items)))
 }

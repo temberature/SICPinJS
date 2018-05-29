@@ -90,10 +90,8 @@ describe('sumOddSquares', function() {
     expect(r).to.equal(true);
   })
   it('enumerateTree(list(1, list(2, list(3, 4)), 5)) === list(1, 2, 3, 4, 5)', function() {
-    var a = enumerateTree(list(2, list(3, 4))),
-    b = list(2, 3, 4);
-    console.log(debug(a), debug(b));
-    var r = equalList(a, b);
-    expect(r).to.equal(true);
+    var a = enumerateTree(list(1, list(2, list(3, 4)), 5)),
+    b = list(1, 2, 3, 4, 5);
+    expect(debug(a)).to.equal(debug(b));
   })
 })
