@@ -37,7 +37,7 @@ describe("sequence", function() {
     var r = productOfSquaresOfOddElements(list(1, 2, 3, 4, 5));
     expect(r).to.equal(225);
   });
-  it("primeSumPairs(6) === 225", function() {
+  it("primeSumPairs(6) === list(list(2, 1), list(3, 2), list(4, 1), list(4, 3), list(5, 2), list(6, 1), list(6, 5))", function() {
     var r = productOfSquaresOfOddElements(list(1, 2, 3, 4, 5));
     expect(r).to.equal(225);
   });
