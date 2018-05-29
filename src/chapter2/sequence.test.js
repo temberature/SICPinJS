@@ -24,11 +24,16 @@ var fib = require('../fib');
 var add = require('../base').add;
 var multiply = require('../base').multiply;
 var listFibSquares = require('./sequence').listFibSquares;
+var productOfSquaresOfOddElements = require('./sequence').productOfSquaresOfOddElements;
 
 describe("sequence", function() {
   it("listFibSquares(10) === list(0, 1, 1, 4, 9, 25, 64, 169, 441, 1156, 3025)", function() {
     var a = listFibSquares(10),
     b = list(0, 1, 1, 4, 9, 25, 64, 169, 441, 1156, 3025);
     expect(debug(a)).to.equal(debug(b));
+  });
+  it("productOfSquaresOfOddElements(list(1, 2, 3, 4, 5)) === 225", function() {
+    var r = productOfSquaresOfOddElements(list(1, 2, 3, 4, 5));
+    expect(r).to.equal(225);
   });
 });

@@ -9,13 +9,18 @@ var isEven = require("../base").isEven;
 var isNull = require("../base").isNull;
 var append = require("./list").append;
 var map = require("./list").map;
+var multiply = require("../base").multiply;
 
 var sumOddSquares = function(tree) {
   return accumulate(add, 0, map(square, filter(isOdd, enumerateTree(tree))));
 };
 
 var evenFibs = function(n) {
-  return accumulate(cons, null, filter(isEven, map(fib, enumerateInterval(0, n))));
+  return accumulate(
+    cons,
+    null,
+    filter(isEven, map(fib, enumerateInterval(0, n)))
+  );
 };
 
 var filter = function(predicate, sequence) {
@@ -56,8 +61,11 @@ var enumerateTree = function(tree) {
 
 var listFibSquares = function(n) {
   return map(square, map(fib, enumerateInterval(0, n)));
-}
+};
 
+var productOfSquaresOfOddElements = function(sequence) {
+  return accumulate(multiply, 1, map(square, filter(isOdd, sequence)));
+};
 module.exports = {
   sumOddSquares: sumOddSquares,
   evenFibs: evenFibs,
@@ -66,5 +74,6 @@ module.exports = {
   accumulate: accumulate,
   enumerateInterval: enumerateInterval,
   enumerateTree: enumerateTree,
-  listFibSquares: listFibSquares
+  listFibSquares: listFibSquares,
+  productOfSquaresOfOddElements: productOfSquaresOfOddElements
 };
