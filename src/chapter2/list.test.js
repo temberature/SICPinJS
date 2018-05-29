@@ -63,24 +63,17 @@ describe("listappend", function() {
   it("append(squares, odds) === list(1, 4, 9, 16, 25, 1, 3, 5, 7)", function() {
     var a = append(squares, odds),
       b = list(1, 4, 9, 16, 25, 1, 3, 5, 7);
-    // console.log(debug(a));
+    console.log(debug(a));
     var r = equalList(a, b);
     expect(r).to.equal(true);
   });
 });
 describe("scaleList", function() {
-  it("scaleList(list(1, 2, 3, 4, 4), 10) === list(10, 20, 30, 40, 50)", function() {
-    var a = scaleList(list(1, 2, 3, 4, 4), 10),
+  it("scaleList(list(1, 2, 3, 4, 5), 10) === list(10, 20, 30, 40, 50)", function() {
+    var a = scaleList(list(1, 2, 3, 4, 5), 10),
       b = list(10, 20, 30, 40, 50);
-    // console.log(debug(a));
+    console.log(debug(a));
     var r = equalList(a, b);
     expect(r).to.equal(true);
-  });
-});
-describe("countLeaves", function() {
-  it("countLeaves(cons(list(1, 2), list(3, 4))) === 4", function() {
-    var x = cons(list(1, 2), list(3, 4));
-    console.log(debug(x));
-    expect(countLeaves(x)).to.equal(4);
   });
 });

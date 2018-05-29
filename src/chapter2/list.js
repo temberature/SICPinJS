@@ -4,12 +4,14 @@ var cdr = require("./cons").cdr;
 
 var list = function() {
   var a = arguments;
-  if (a.length < 2) {
-    return a[0];
+  if (a[0] === undefined) {
+    return null;
   }
   return cons(a[0], list.apply(undefined, [].slice.call(a, 1)));
 };
-
+var isNull = function(sequence) {
+  return sequence === null;
+}
 var equalList = function(a, b) {
   if (a === b) {
     return true;
@@ -25,28 +27,28 @@ var listRef = function(items, n) {
 };
 
 var length = function(items) {
-  if (cdr(items) === false) {
-    return 1;
+  if (isNull(items)) {
+    return 0;
   }
   return 1 + length(cdr(items));
 };
 
 var append = function(list1, list2) {
-  if (cdr(list1) === false) {
-    return cons(list1, list2);
+  if (isNull(list1)) {
+    return list2;
   }
   return cons(car(list1), append(cdr(list1), list2));
 };
 var debug = function(items) {
-  if (cdr(items) === false) {
-    return items;
+  if (isNull(items)) {
+    return null;
   }
   return car(items) + " " + debug(cdr(items));
 };
 
 var scaleList = function(items, factor) {
-  if (cdr(items) === false) {
-    return items * factor;
+  if (isNull(items)) {
+    return null;
   }
   return cons(car(items) * factor, scaleList(cdr(items), factor));
 }
@@ -59,10 +61,10 @@ var map = function(proc, items) {
 }
 
 var countLeaves = function(x) {
-  if (cdr(x) === false) {
-    return 1;
+  if (isNull(x)) {
+    return 0;
   }
-  return countLeaves(car(x)) + countLeaves(cdr(x));
+  return isNull(car(x)) ? 1 + countLeaves(cdr(x)) : countLeaves(car(x)) + countLeaves(cdr(x));
 }
 module.exports = {
   list: list,
