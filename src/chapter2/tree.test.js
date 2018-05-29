@@ -47,7 +47,7 @@ describe('sumOddSquares', function() {
   })
   it('evenFibs(3) === list(fib(3), fib(0))', function() {
     var a = evenFibs(3),
-    b = list(fib(3), fib(0));
+    b = list(fib(0), fib(3));
     console.log(debug(a), debug(b));
     var r = equalList(a, b);
     expect(r).to.equal(true);

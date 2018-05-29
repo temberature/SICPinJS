@@ -26,11 +26,7 @@ var sumOddSquares = function(tree) {
 };
 
 var evenFibs = function(n) {
-  if (n < 0) {
-    return null;
-  }
-  var fiber = fib(n);
-  return fiber % 2 === 0 ? cons(fiber, evenFibs(n - 1)) : evenFibs(n - 1);
+  return accumulate(cons, null, filter(isEven, map(fib, enumerateInterval(0, n))));
 };
 
 var filter = function(predicate, sequence) {
@@ -45,6 +41,9 @@ var filter = function(predicate, sequence) {
 };
 var isOdd = function(n) {
   return n % 2 === 1;
+};
+var isEven = function(n) {
+  return !isOdd(n);
 };
 var isNull = function(sequence) {
   return sequence === null;
