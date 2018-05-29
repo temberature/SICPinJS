@@ -18,9 +18,18 @@ var equalTree = function(a, b) {
 }
 
 var sumOddSquares = function(tree) {
-  return square()
+  if (cdr(tree) === false) {
+    if (tree % 2 === 1) {
+      return square(tree);
+    } else {
+      return 0;
+    }
+
+  }
+  return sumOddSquares(car(tree)) + sumOddSquares(cdr(tree));
 }
 module.exports = {
   scaleTree: scaleTree,
-  equalTree: equalTree
+  equalTree: equalTree,
+  sumOddSquares: sumOddSquares
 };
