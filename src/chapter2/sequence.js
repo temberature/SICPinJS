@@ -8,6 +8,7 @@ var isOdd = require("../base").isOdd;
 var isEven = require("../base").isEven;
 var isNull = require("../base").isNull;
 var append = require("./list").append;
+var length = require("./list").length;
 var map = require("./list").map;
 var multiply = require("../base").multiply;
 var isPrime = require("../chapter1/isPrime");
@@ -80,6 +81,37 @@ var primeSumPairs = function(n) {
     }, enumerateInterval(1, n))
   );
 };
+var swap = function(i, j, sequence) {
+  return map(function(item) {
+    if (item === listRef(sequence, i)) {
+      return listRef(sequence, j);
+    } else if (item === listRef(sequence, j)) {
+      return listRef(sequence, i);
+    } else {
+      return item;
+    }
+  }, sequence);
+};
+
+var bubbleSort = function(sequence) {
+  var bubbleIter = function(k, l, sequence) {
+    if (k >= l - 1) {
+      return sequence;
+    }
+    return listRef(sequence, k) > listRef(sequence, add(k, 1))
+      ? bubbleIter(add(k, 1), swap(k, add(k, 1), sequence))
+      : bubbleIter(add(k, 1), sequence);
+  };
+
+  var bubbIter = function(l, sequence) {
+    if (l <= 0) {
+      return sequence;
+    }
+    return bubbIter(l - 1, bubbleIter(1, l, sequence));
+  };
+  console.log(length(sequence));
+  return bubbIter(length(sequence) - 1, sequence);
+};
 module.exports = {
   sumOddSquares: sumOddSquares,
   evenFibs: evenFibs,
@@ -90,5 +122,7 @@ module.exports = {
   enumerateTree: enumerateTree,
   listFibSquares: listFibSquares,
   productOfSquaresOfOddElements: productOfSquaresOfOddElements,
-  primeSumPairs: primeSumPairs
+  primeSumPairs: primeSumPairs,
+  bubbleSort: bubbleSort,
+  swap: swap
 };
